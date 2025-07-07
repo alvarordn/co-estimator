@@ -4,21 +4,48 @@ This folder contains test cases simulating **smart false data injection (FDI) at
 
 Smart attacks typically require advanced knowledge of the grid topology and operating conditions, making them more sophisticated and harder to detect than dummy attacks.
 
+## Test Scenarios
+
+Three scenarios have been considered. All tests were conducted with the photovoltaic plant operating at 13:00 hours (a time of high irradiance), under a power factor of 0.9 capacitive.
+
+The three scenarios reflect different assumptions regarding the availability of measurements in the medium-voltage feeders of the PV plant:
+
+- **Scenario 1**: Measurements from the MV feeders are included (`with_MT`).
+- **Scenario 2**: No measurements from the MV feeders are available (`wo_MT`).
+- **Scenario 3**: Pseudo-measurements of active power are generated based on upstream and downstream measurements (`with_PSM`).
+
+These scenarios allow for the evaluation of the estimator’s performance under varying data availability conditions.
+
 ## `data.json` File Structure
 
 The `data.json` file is a nested dictionary with the following structure:
 
 - **First level key**: Percentage of attacked measurements (`5`, `10`, `20`, `40`)
-- **Second level key**: Case number (`0` to `9`)
+- **Second level key**: Test case number (`0` to `9`)
 - **Third level**: Dictionary containing the evaluation metrics:
   - `Precision`
   - `Recall`
   - `Accuracy`
   - `F1-score`
-  - `Z` (detection statistic)
-  - `Norm2` (L2 norm of the residual)
-  - `NormInfinity` (L∞ norm of the residual)
+  - `Z` (Root mean square difference between unmodified measurements and tool estimates)
+  - `Norm2` (Root mean square difference between real state and tool state estimation)
+  - `NormInf` (Maximum difference between real state and tool state estimation)
 
+
+## Naming Convention for Figures
+
+The figures in this folder follow a structured naming convention to clearly identify the content of each plot. The filename format is:\
+<Magnitude>_<Node>_<Scenario>.pdf\
+where:
+
+- **`<Magnitude>`**: The type of electrical magnitude that was attacked (e.g., `U` for voltage, `P` for active power, `Q` for reactive power).
+- **`<Node>`**: The identifier of the node where the attack was performed.
+- **`<Scenario>`**: The scenario under which the test was conducted:
+  - `with_MT`: Measurements from the MV feeders are included.
+  - `wo_MT`: No measurements from the MV feeders are available.
+  - `with_PSM`: Pseudo-measurements of active power were used based on upstream and downstream data.
+
+This naming system allows for easy identification of the attack type, location, and test conditions directly from the figure filename.
 ## Test case description
 
 ### **Case 0**
