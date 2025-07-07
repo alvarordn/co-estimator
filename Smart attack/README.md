@@ -35,7 +35,7 @@ The `data.json` file is a nested dictionary with the following structure:
 ## Naming Convention for Figures
 
 The figures in this folder follow a structured naming convention to clearly identify the content of each plot. The filename format is:\
-<Magnitude>_<Node>_<Scenario>.pdf\
+`<Magnitude>`_`<Node>`_`<Scenario>`.pdf\
 where:
 
 - **`<Magnitude>`**: The type of electrical magnitude that was attacked (e.g., `U` for voltage, `P` for active power, `Q` for reactive power).
