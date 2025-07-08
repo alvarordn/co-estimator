@@ -38,7 +38,7 @@ For each combination of attack percentage and test case, 20 simulations have bee
 ## Naming Convention for Figures
 
 The figures in this folder follow a structured naming convention to clearly identify the content of each plot. The filename format is:\
-`<Mode>`_`<Magnitude>`_`<Node>`_`<Scenario>`.pdf\
+`<Mode>`__`<Magnitude>`__`<Node>`__`<Scenario>`.pdf\
 where:
 
 - **`<Mode>`**: Detection or identification.
