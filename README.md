@@ -9,7 +9,7 @@ The code and results are organized into multiple folders, each representing a sp
 │\
 ├── data/ # JSON files containing results from simulation tests\
 ├── figs/ # Graphical representations (plots, charts, etc.) of the test results\
-└── README.md # Interpretation and explanation of the test case and its results\
+└── README.md # Interpretation and explanation of the test case and its results
 
 
 ### `data/` Folder

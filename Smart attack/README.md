@@ -38,7 +38,7 @@ The figures in this folder follow a structured naming convention to clearly iden
 `<Magnitude>`_`<Node>`_`<Scenario>`.pdf\
 where:
 
-- **`<Magnitude>`**: The type of electrical magnitude that was attacked (e.g., `U` for voltage, `P` for active power, `Q` for reactive power).
+- **`<Magnitude>`**: The type of electrical magnitude that was attacked (`U` for voltage, `P` for active power, `Q` for reactive power and `I` for current).
 - **`<Node>`**: The identifier of the node where the attack was performed.
 - **`<Scenario>`**: The scenario under which the test was conducted:
   - `with_MT`: Measurements from the MV feeders are included.
@@ -47,6 +47,23 @@ where:
 
 This naming system allows for easy identification of the attack type, location, and test conditions directly from the figure filename.
 ## Test case description
+
+A table summary is presented next:
+
+| Case id | Target node | Magnitude | Deviation | Objective                     |
+|---------|-------------|-----------|-----------|-------------------------------|
+| 0       | LV0102      | U         | 98%       | Trip an inverter              |
+| 1       | POI         | Q         | 80%       | Trip an inverter              |
+| 2       | POI         | U         | 98%       | Trip an inverter              |
+| 3       | POI         | U         | 102%      | Trip an inverter              |
+| 4       | POI         | Q         | 80%       | Economic loss                 |
+| 5       | POI         | Q         | 120%      | Economic loss                 |
+| 6       | POI         | P         | 80%       | Economic loss                 |
+| 7       | POI         | P         | 120%      | Economic loss                 |
+| 8       | POI         | U         | 98%       | Economic loss                 |
+| 9       | POI         | U         | 102%      | Economic loss                 |
+
+Next, each of the cases is described:
 
 ### **Case 0**
 - **Description**: This test case aims to simulate an attack that could trigger the disconnection of an inverter due to overvoltage. To achieve this, the attack sets the inverter's voltage below the measured value, potentially causing an overvoltage condition that leads the inverter to trip.
