@@ -31,7 +31,7 @@ The `data.json` file is a nested dictionary with the following structure:
   - `Norm2` (Root mean square difference between real state and tool state estimation)
   - `NormInf` (Maximum difference between real state and tool state estimation)
 
-For each combination of attack percentage and test case, 20 simulations have been conducted, with each simulation involving a random selection of measurements modified by the attack. In total, the results presented here are based on 800 simulation runs.
+For each combination of attack percentage and test case, 20 simulations have been conducted, with each simulation involving a random selection of measurements modified by the attack. In total, the results presented here are based on **800 simulation runs**.
 
 ## Naming Convention for Figures
 
