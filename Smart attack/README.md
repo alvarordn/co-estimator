@@ -48,7 +48,6 @@ where:
 This naming system allows for easy identification of the attack type, location, and test conditions directly from the figure filename.
 ## Test case description
 
-A table summary is presented next:
 
 | Case id | Target node | Magnitude | Deviation | Objective                     |
 |---------|-------------|-----------|-----------|-------------------------------|
@@ -63,7 +62,7 @@ A table summary is presented next:
 | 8       | POI         | U         | 98%       | Economic loss                 |
 | 9       | POI         | U         | 102%      | Economic loss                 |
 
-Next, each of the cases is described:
+Each case is described next:
 
 ### **Case 0**
 - **Description**: This test case aims to simulate an attack that could trigger the disconnection of an inverter due to overvoltage. To achieve this, the attack sets the inverter's voltage below the measured value, potentially causing an overvoltage condition that leads the inverter to trip.
