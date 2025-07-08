@@ -31,6 +31,7 @@ The `data.json` file is a nested dictionary with the following structure:
   - `Norm2` (Root mean square difference between real state and tool state estimation)
   - `NormInf` (Maximum difference between real state and tool state estimation)
 
+For each combination of attack percentage and test case, 20 simulations have been conducted, with each simulation involving a random selection of measurements modified by the attack. In total, the results presented here are based on 800 simulation runs.
 
 ## Naming Convention for Figures
 
@@ -48,6 +49,7 @@ where:
 This naming system allows for easy identification of the attack type, location, and test conditions directly from the figure filename.
 ## Test case description
 
+A table summary is presented next:
 
 | Case id | Target node | Magnitude | Deviation | Objective                     |
 |---------|-------------|-----------|-----------|-------------------------------|
@@ -62,7 +64,7 @@ This naming system allows for easy identification of the attack type, location, 
 | 8       | POI         | U         | 98%       | Economic loss                 |
 | 9       | POI         | U         | 102%      | Economic loss                 |
 
-Each case is described next:
+Next, each of the cases is described:
 
 ### **Case 0**
 - **Description**: This test case aims to simulate an attack that could trigger the disconnection of an inverter due to overvoltage. To achieve this, the attack sets the inverter's voltage below the measured value, potentially causing an overvoltage condition that leads the inverter to trip.
