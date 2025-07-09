@@ -1,10 +1,10 @@
-# Single Attack Amplitude Evaluation
+# Double Attack Amplitude Evaluation
 
-This test case investigates the effects of injecting a single dummy false data injection attack targeting one measurement (e.g., real power *P*, reactive power *Q*, voltage *U*, or current *I*). The amplitude of the injected error is systematically varied to assess its detectability and the ability of the state estimator to correctly identify the anomaly. This helps determine the sensitivity of bad data detection algorithms to varying magnitudes of simple attacks. The value of the hyper-parameter λ is modified across multiple scenarios to evaluate estimator performance under different conditions.
+This test case investigates the effects of launching **two simultaneous dummy false data injection attacks** targeting different measurements (e.g., real power *P*, reactive power *Q*, voltage *U*, or current *I*) at distinct locations in the system. Both attacks have the **same magnitude type** (e.g., both target *P*, or both target *Q*), but occur at different nodes. The amplitude of both attacks is varied systematically using predefined "bands" to assess how combined perturbations affect detectability and identification accuracy. This helps evaluate the robustness of bad data detection algorithms when facing coordinated, yet naive multi-point threats. The value of the hyper-parameter λ is modified across multiple scenarios to evaluate estimator performance under various conditions.
 
 ## Amplitude Band Description
 
-In this test case, the amplitude of the attack is varied using predefined "bands". Each band corresponds to a specific range of percentage deviation from the original measurement value. There are 8 bands in total (numbered 0 through 7), where each number corresponds to a different level of perturbation intensity. The exact percentage ranges depend on the type of electrical magnitude being attacked (*P*/*Q* or *U*).
+In this test case, the amplitude of each attack is defined using predefined "bands". Each band corresponds to a specific range of percentage deviation from the original measurement value. There are 8 bands in total (numbered 0 through 7), where each number corresponds to a different level of perturbation intensity. The exact percentage ranges depend on the type of electrical magnitude being attacked (*P*/*Q* or *U*).
 
 Below is a table summarizing the mapping between band numbers and percentage deviations:
 
@@ -19,7 +19,7 @@ Below is a table summarizing the mapping between band numbers and percentage dev
 | 6           | 110 – 115             | 101.0 – 101.5      |
 | 7           | 115 – 120             | 101.5 – 102.0      |
 
-The result files are named according to the format: `bands_{band}.json`.
+The result files are named according to the format: `bands_{band1}_{band2}.json`, where `{band1}` and `{band2}` refer to the amplitude band of each individual attack. For example, `bands_2_5.json` contains results for simulations where one attack was injected using band 2 and the other using band 5.
 
 ## `.json` File Structure
 
@@ -33,7 +33,7 @@ The `.json` file is structured as a nested dictionary with the following hierarc
 - **Fourth-level key**: Electrical magnitude attacked (`P`, `Q`, or `U`)
 - **Fifth-level**: A dictionary containing:
   - **Detection records** (for detection files):
-    - `Detection`: List indicating for each ismulation if the attack has been detected (`true`) or not (`false`).
+    - `Detection`: List indicating for each simulation if the attack has been detected (`true`) or not (`false`).
   - **Identification metrics** (for identification files):
     - `0`: Scenarios in which the attack has been correctly detected.
     - `1`: Scenarios in which the attack has been detected but at least one healthy measurement was incorrectly flagged.
