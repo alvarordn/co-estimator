@@ -1,39 +1,67 @@
-# Time Instant Influence
+# Multiple Attack Pseudomeasurements Evaluation
 
-Blah
+This test case evaluates the impact of **including pseudomeasurements** in the state estimation process under **multiple simultaneous false data injection attacks**, particularly in **Medium Voltage (MV) feeders**. The focus is on how different data configurations affect detection and identification performance when **multiple measurements are attacked simultaneously**.
 
-## `data.json` File Structure
+Three scenarios are considered:
+1. **With measurements**: Real measurements are available and used in the MV feeders (`with_MV`).
+2. **Without measurements**: No measurements are assumed to be present in the MV feeders (`wo_MV`)
+3. **With pseudomeasurements**: Active power pseudomeasurements are generated for the MV feeders based on aggregated information from downstream nodes (bottom-up) and upstream nodes (top-down) (`with_PSM`)
 
-The result files have a `.json` extension and there are two types of results: detection and identification. Detection files are prefixed with the word "detection" and indicate, out of the total number of simulations performed, in which of them a cyberattack was detected, without specifying the specific measurement or set of measurements attacked. On the other hand, identification files are prefixed with the word "identification" and provide various metrics evaluating the perfomrance in that specific scenario, which are described in detail below.
+In each scenario, a variable number of measurements — ranging from **2 to 10** — are randomly selected and attacked in each simulation. This allows to assess how the system responds to increasing attack complexity across different measurement availability conditions.
 
-The `data.json` file is a nested dictionary with the following structure:
+The value of the hyper-parameter λ is fixed at **2.5**, based on results from previous simulations. 
 
-- **First level key**: Percentage of attacked measurements (`5`, `10`, `20`, `40`)
-- **Second level key**: Test case number (`0` to `9`)
-- **Third level**: Dictionary containing `Detction` records for the detection evaluation or containing the following evaluation metrics for identification within scenarios:
-  - `Precision`
-  - `Recall`
-  - `Accuracy`
-  - `F1-score`
-  - `Z` (Root mean square difference between unmodified measurements and tool estimates)
-  - `Norm2` (Root mean square difference between real state and tool state estimation)
-  - `NormInf` (Maximum difference between real state and tool state estimation)
+## Amplitude Band Description
 
-For each combination of attack percentage and test case, 20 simulations have been conducted, with each simulation involving a random selection of measurements modified by the attack. In total, the results presented here are based on **800 simulation runs**.
+In this test case, each attack is injected using one of eight predefined amplitude bands. Each band corresponds to a specific percentage deviation from the original measurement value, depending on the type of electrical magnitude being attacked (*P*/*Q* or *U*).
+
+Below is a table summarizing the mapping between band numbers and percentage deviations:
+
+| Band Number | *P* or *Q* Range (%) | *U* Range (%)     |
+|-------------|-----------------------|--------------------|
+| 0           | 80 – 85               | 98.0 – 98.5        |
+| 1           | 85 – 90               | 98.5 – 99.0        |
+| 2           | 90 – 95               | 99.0 – 99.5        |
+| 3           | 95 – 100              | 99.5 – 100.0       |
+| 4           | 100 – 105             | 100.0 – 100.5      |
+| 5           | 105 – 110             | 100.5 – 101.0      |
+| 6           | 110 – 115             | 101.0 – 101.5      |
+| 7           | 115 – 120             | 101.5 – 102.0      |
+
+The result files are named according to the format: `{scenario}_{band}.json`, where `{scenario}` refers to the availability of MV feeder measurements and `{band}` refers to the amplitude band used for the attacks. For example, `with_MV_3.json` contains results for simulations over a set of measurements that includes MV ones and where all attacks were injected using band 3.
+
+## `.json` File Structure
+
+The result files have a `.json` extension and are divided into two types: **detection** and **identification**. Detection files are prefixed with the word `detection` and indicate, out of the total number of simulations performed, in which of them a cyberattack was detected, without specifying the exact measurement or set of measurements attacked. Identification files are prefixed with `identification` and include various performance metrics that evaluate the accuracy of attack identification. These metrics are described in detail below.
+
+The `.json` file is structured as a nested dictionary with the following hierarchy:
+
+- **First-level key**: Power factor (`090neg`, `090pos`, `100pos`)
+- **Second-level key**: Time instant (`08`, `10`, `13`) 
+- **Third-level key**: Number of measurement attacked (ranges from `2` to `10`)
+- **Fourth-level**: A dictionary containing:
+  - **Detection records** (for detection files):
+    - `Detection`: List indicating for each simulation if the attack has been detected (`true`) or not (`false`).
+  - **Identification metrics** (for identification files):
+    - `Precision`: Average precision across all simulations.
+    - `Recall`: Average recall across all simulations.
+    - `Accuracy`: Average accuracy across all simulations.
+    - `F1`: Average F1-score across all simulations.
+    - `norm2`: Root mean square difference between real state and tool state estimation.
+    - `normInf`: Maximum difference between real state and tool state estimation.
+    - `z`: Root mean square difference between unmodified measurements and tool estimates.
+
+For each combination of power factor, time instant and number of attacked measurements, **1,000 simulations** have been conducted. In total, the results presented here are based on **81,000**, depending on the number of configurations tested.
 
 ## Naming Convention for Figures
 
-The figures in this folder follow a structured naming convention to clearly identify the content of each plot. The filename format is:\
-`<Mode>`_`<Magnitude>`_`<Node>`_`<Scenario>`.pdf\
+The figures in this folder follow a structured naming convention to clearly identify the content of each plot. The filename format is:  
+`<Mode>_<Magnitude>_<PowerFactor>_<Scenario>.pdf`  
+
 where:
 
-- **`<Mode>`**: Detection or identification.
-- **`<Magnitude>`**: The type of electrical magnitude that was attacked (`U` for voltage, `P` for active power, `Q` for reactive power and `I` for current).
-- **`<Node>`**: The identifier of the node where the attack was performed.
-- **`<Scenario>`**: The scenario under which the test was conducted:
-  - `with_MT`: Measurements from the MV feeders are included.
-  - `wo_MT`: No measurements from the MV feeders are available.
-  - `with_PSM`: Pseudo-measurements of active power were used based on upstream and downstream data.
+- **`<Mode>`**: Either `detection` or `identification`.
+- **`<PowerFactor>`**: The power factor used during the simulation (`090neg`, `090pos`, or `100pos`).
+- **`<Magnitude>`**: The type of electrical magnitude that was attacked (`U` for voltage, `P` for active power, `I` for current and `Q` for reactive power).
 
-This naming system allows for easy identification of the attack type, location, and test conditions directly from the figure filename.
-
+This naming system allows for easy categorization and retrieval of results based on the attack type, simulation parameters, and data availability scenario.
