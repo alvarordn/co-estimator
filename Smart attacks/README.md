@@ -10,8 +10,8 @@ Three scenarios have been considered. All tests were conducted with the photovol
 
 The three scenarios reflect different assumptions regarding the availability of measurements in the medium-voltage feeders of the PV plant:
 
-- **Scenario 1**: Measurements from the MV feeders are included (`with_MT`).
-- **Scenario 2**: No measurements from the MV feeders are available (`wo_MT`).
+- **Scenario 1**: Measurements from the MV feeders are included (`with_MV`).
+- **Scenario 2**: No measurements from the MV feeders are available (`wo_MV`).
 - **Scenario 3**: Pseudo-measurements of active power are generated based on upstream and downstream measurements (`with_PSM`).
 
 These scenarios allow for the evaluation of the estimator’s performance under varying data availability conditions.
@@ -23,15 +23,15 @@ The result files have a `.json` extension and there are two types of results: de
 The `.json` file is a nested dictionary with the following structure:
 
 - **First level key**: Percentage of attacked measurements (`5`, `10`, `20`, `40`)
-- **Second level key**: Test case number (`0` to `9`)
-- **Third level**: Dictionary containing `Detction` records for the detection evaluation or containing the following evaluation metrics for identification within scenarios:
-  - `Precision`
-  - `Recall`
-  - `Accuracy`
-  - `F1-score`
-  - `Z` (Root mean square difference between unmodified measurements and tool estimates)
-  - `Norm2` (Root mean square difference between real state and tool state estimation)
-  - `NormInf` (Maximum difference between real state and tool state estimation)
+- **Second level key**: Test case number (ranges from `0` to `9`)
+- **Third level**: Dictionary containing `Detection` records for the detection evaluation or containing the following evaluation metrics for identification within scenarios:
+  - `Precision`: Average precision across all simulations.
+  - `Recall`: Average recall across all simulations.
+  - `Accuracy`: Average accuracy across all simulations.
+  - `F1-score`: Average F1-score across all simulations.
+  - `Z`: Root mean square difference between unmodified measurements and tool estimates)
+  - `Norm2`: Root mean square difference between real state and tool state estimation
+  - `NormInf`: Maximum difference between real state and tool state estimation
 
 For each combination of attack percentage and test case, 20 simulations have been conducted, with each simulation involving a random selection of measurements modified by the attack. In total, the results presented here are based on **800 simulation runs**.
 
@@ -42,8 +42,8 @@ The figures in this folder follow a structured naming convention to clearly iden
 where:
 
 - **`<Mode>`**: Detection or identification.
-- **`<Magnitude>`**: The type of electrical magnitude that was attacked (`U` for voltage, `P` for active power, `Q` for reactive power and `I` for current).
-- **`<Node>`**: The identifier of the node where the attack was performed.
+- **`<Magnitude>`**: In the case of identification denotes the type of electrical magnitude that was attacked (`U` for voltage, `P` for active power and `Q` for reactive power).
+- **`<Node>`**: In the case of identification denotes the identifier of the node where the attack was performed.
 - **`<Scenario>`**: The scenario under which the test was conducted:
   - `with_MT`: Measurements from the MV feeders are included.
   - `wo_MT`: No measurements from the MV feeders are available.
@@ -67,7 +67,7 @@ A table summary is presented next:
 | 8       | POI         | U         | 98%       | Economic loss                 |
 | 9       | POI         | U         | 102%      | Economic loss                 |
 
-Next, each of the cases is described:
+Next, each case is described:
 
 ### **Case 0**
 - **Description**: This test case aims to simulate an attack that could trigger the disconnection of an inverter due to overvoltage. To achieve this, the attack sets the inverter's voltage below the measured value, potentially causing an overvoltage condition that leads the inverter to trip.
