@@ -6,9 +6,7 @@ This repository contains the results of the power systems state estimation devel
 
 Below is an illustration of the PV plant used in our analysis. The plant consists of two Medium Voltage (MV) feeders, each equipped with 3 inverters. The inverters are connected to the MV feeder through transformers, and the plant evacuates energy to the main grid via an electrical substation. Measurements are assumed to be available at all points marked with red squares in the diagram.
 
-<div style="margin-bottom: 10px;">
 ![PV Plant Diagram](pv_2_3.svg "Diagram of the PV Plant")
-</div>
 
 
 ## Repository Structure
