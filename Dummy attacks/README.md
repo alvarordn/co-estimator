@@ -11,15 +11,15 @@ These attacks can be categorized as:
 
 The following table summarizes the different test cases included in this folder:
 
-| Case id | Test Case                                | Description                                                                 |
-|--------|----------------------------------|-----------------------------------------------------------------------------|
-|01| Time Instant Evaluation | Evaluates how the timing of the attack—and consequently, the power output of the PV plant—affects the effectiveness of detection and identification strategies. Additionally, the tuning parameter (λ) of the Huber estimator is optimized to enhance robustness under such conditions|
-|02| Single Attack Amplitude Evaluation | Analyzes the impact of varying the amplitude of a single measurement attack |
-|03| Double Attack Amplitude Evaluation | Investigates the effect of concurrent attacks targeting two measurements, with identical magnitude (in terms of P, Q, U, or I), but applied at different locations within the system (the amplitude of the attacks is also studied) |
-|04| Combined Attack Amplitude Evaluation | Examines the impact of simultaneous attacks on two different magnitudes (P, Q, U, or I) measured at the same or different locations (the amplitude of the attacks is also studied) |
-|05| Multiple Attack Evaluation | Assesses system behavior under widespread dummy attacks across several measurements |
-|06| Single Attack considering Pseudomeasurements Evaluation | Evaluates whether the inclusion of pseudomeasurements improves state estimation accuracy under a single dummy attack    |
-|07| Multiple Attack considering Pseudomeasurements Evaluation | Investigates the effectiveness of pseudomeasurements in improving state estimation resilience under multiple dummy attacks  |
+| Case id     | Test Case                                | Description                                                                 |
+|-----------|----------------------------------|-----------------------------------------------------------------------------|
+|01       | Time Instant Evaluation | Evaluates how the timing of the attack—and consequently, the power output of the PV plant—affects the effectiveness of detection and identification strategies. Additionally, the tuning parameter (λ) of the Huber estimator is optimized to enhance robustness under such conditions|
+|02       | Single Attack Amplitude Evaluation | Analyzes the impact of varying the amplitude of a single measurement attack |
+|03       | Double Attack Amplitude Evaluation | Investigates the effect of concurrent attacks targeting two measurements, with identical magnitude (in terms of P, Q, U, or I), but applied at different locations within the system (the amplitude of the attacks is also studied) |
+|04       | Combined Attack Amplitude Evaluation | Examines the impact of simultaneous attacks on two different magnitudes (P, Q, U, or I) measured at the same or different locations (the amplitude of the attacks is also studied) |
+|05       | Multiple Attack Evaluation | Assesses system behavior under widespread dummy attacks across several measurements |
+|06       | Single Attack considering Pseudomeasurements Evaluation | Evaluates whether the inclusion of pseudomeasurements improves state estimation accuracy under a single dummy attack    |
+|07       | Multiple Attack considering Pseudomeasurements Evaluation | Investigates the effectiveness of pseudomeasurements in improving state estimation resilience under multiple dummy attacks  |
 
 ## Detailed Case Descriptions
 
