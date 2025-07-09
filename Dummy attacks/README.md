@@ -21,25 +21,33 @@ The following table summarizes the different test cases included in this folder:
 |06       | Single Attack considering Pseudomeasurements Evaluation | Evaluates whether the inclusion of pseudomeasurements improves state estimation accuracy under a single dummy attack    |
 |07       | Multiple Attack considering Pseudomeasurements Evaluation | Investigates the effectiveness of pseudomeasurements in improving state estimation resilience under multiple dummy attacks  |
 
+
 ## Detailed Case Descriptions
 
-### **Time Instant Influence**
-- **Description**: This test case evaluates how the exact moment in which the attack is injected into the system influences the detection and identification performance. It explores whether certain time instants make the system more vulnerable or resilient to dummy attacks due to load variations, observability conditions, or estimator dynamics.
+### **Time Instant Evaluation (Case 01)**
 
-### **Single Attack Amplitude Influence**
-- **Description**: A single measurement is manipulated with varying amplitudes. The goal is to assess how the magnitude of the perturbation affects detection thresholds and identification accuracy.
+This test case evaluates how the timing of the dummy attack affects the performance of detection and identification mechanisms. Since the power output of the PV plant varies over time depending on environmental conditions (e.g., irradiance), the impact of launching an attack at different operational states of the system is analyzed. Additionally, the tuning parameter (λ) of the Huber estimator is optimized to improve robustness under these time-varying conditions.
 
-### **Double Attack Amplitude Influence**
-- **Description**: Two different measurements are simultaneously attacked with controlled amplitudes. This scenario helps understand how the interaction between multiple attacked measurements impacts detection and identification mechanisms.
+### **Single Attack Amplitude Evaluation (Case 02)**
 
-### **Combined Attack Amplitude Influence**
-- **Description**: Multiple attacks with different magnitudes are applied simultaneously to various measurements. This allows for analyzing how combinations of mild and gross attacks affect overall system integrity and estimator performance.
+This test case investigates the effects of injecting a single dummy false data injection attack targeting one measurement (e.g., real power *P*, reactive power *Q*, voltage *U*, or current *I*). The amplitude of the injected error is systematically varied to assess its detectability and the ability of the state estimator to correctly identify the anomaly. This helps determine the sensitivity of bad data detection algorithms to varying magnitudes of simple attacks.
 
-### **Multiple Attack Influence**
-- **Description**: A large number of measurements are attacked simultaneously. This case mimics a distributed attack strategy and tests the estimator’s ability to detect and identify attacks under high stress conditions.
+### **Double Attack Amplitude Evaluation (Case 03)**
 
-### **Single Attack Pseudomeasurements Evaluation**
-- **Description**: A single dummy attack is applied on a pseudomeasurement (i.e., an external forecast or historical value used in the estimation process). This helps evaluate how such attacks propagate through the system and affect the final state estimate.
+In this scenario, two simultaneous dummy attacks are applied to different measurements within the system. Both attacks have the same magnitude (in terms of *P*, *Q*, *U*, or *I*) but target distinct locations in the network. The amplitude of the attacks is varied across multiple test runs to evaluate how detection and identification systems respond to coordinated yet unsophisticated multi-point threats.
 
-### **Multiple Attack Pseudomeasurements Evaluation**
-- **Description**: Multiple dummy attacks are introduced into different pseudomeasurements. This scenario studies the vulnerability of the estimator when critical external inputs are compromised.
+### **Combined Attack Amplitude Evaluation (Case 04)**
+
+This case examines the impact of launching concurrent dummy attacks on two **different types** of measurements (e.g., voltage and current, or real and reactive power) either at the same or at different locations. The amplitude of both attacks is adjusted independently across simulations to study how combined variations affect detection accuracy and the overall reliability of state estimation under naive multi-signal manipulation.
+
+### **Multiple Attack Evaluation (Case 05)**
+
+This test case simulates widespread dummy attacks affecting several measurements simultaneously. The number of attacked measurements and the amplitude of each injected error are varied to assess the system's resilience when faced with large-scale, uncoordinated FDI attempts. Particular attention is given to how traditional and enhanced bad data detection methods perform under increased attack complexity.
+
+### **Single Attack Considering Pseudomeasurements (Case 06)**
+
+This case evaluates whether incorporating pseudomeasurements—such as load forecasts or historical values—into the state estimation process improves robustness against a single dummy attack. By varying the amplitude of the attack, the effectiveness of pseudomeasurements in mitigating the impact of erroneous data and enhancing estimation accuracy is analyzed.
+
+### **Multiple Attacks Considering Pseudomeasurements (Case 07)**
+
+Building upon Case 06, this test extends the analysis to multiple dummy attacks occurring simultaneously across different measurements. The amplitude of each attack is adjusted to evaluate how well pseudomeasurements support the estimator’s ability to maintain accuracy and detect anomalies under more complex attack scenarios.
