@@ -19,7 +19,7 @@ Below is a table summarizing the mapping between band numbers and percentage dev
 | 6           | 110 – 115             | 101.0 – 101.5      |
 | 7           | 115 – 120             | 101.5 – 102.0      |
 
-The result files are named according to the format: `bands_{start_band}_{end_band}.json`. For example, `bands_0_3.json` contains results for all bands from 0 to 3. In most cases, simulations use a single band at a time, so filenames like `bands_2_2.json` are common.
+The result files are named according to the format: `bands_{band}.json`. For example, `bands_3.json` contains results for bands 3. 
 
 ## `.json` File Structure
 
@@ -33,7 +33,8 @@ The `.json` file is structured as a nested dictionary with the following hierarc
 - **Fourth-level key**: Electrical magnitude attacked (`P`, `Q`, or `U`)
 - **Fifth-level**: A dictionary containing:
   - **Detection records** (for detection files):
-    - `Detection`: List indicating for each ismulation if the attack has been detected (`true`) or not (`false`).
+    - `"detected"`: Number of simulations where the attack was successfully detected.
+    - `"undetected"`: Number of simulations where the attack went undetected.
   - **Identification metrics** (for identification files):
     - `0`: Scenarios in which the attack has been correctly detected.
     - `1`: Scenarios in which the attack has been detected but at least one healthy measurement was incorrectly flagged.
@@ -56,6 +57,3 @@ where:
 - **`<PowerFactor>`**: The power factor used during the simulation (`090neg`, `090pos`, or `100pos`).
 
 This naming system allows for easy categorization and retrieval of results based on the attack type and simulation parameters.
-
-
-    
