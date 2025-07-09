@@ -8,11 +8,6 @@ Below is an illustration of the PV plant used in our analysis. The plant consist
 
 ![PV Plant Diagram](pv_2_3.svg "Diagram of the PV Plant")
 
-### Key Features of the PV Plant:
-- **Two MV Feeders**: Each feeder has 3 inverters.
-- **Inverter Connections**: Inverters are connected to the MV feeder via transformers.
-- **Grid Connection**: Energy is evacuated to the main grid through an electrical substation.
-- **Measurement Points**: Measurements are available at all points marked with red squares in the diagram.
 
 ## Repository Structure
 
