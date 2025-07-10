@@ -19,7 +19,7 @@ Below is a table summarizing the mapping between band numbers and percentage dev
 | 6           | 110 – 115             | 101.0 – 101.5      |
 | 7           | 115 – 120             | 101.5 – 102.0      |
 
-The result files are named according to the format: `bands_{band1}_{band2}.json`, where `{band1}` and `{band2}` refer to the amplitude band of each individual attack. For example, `bands_2_5.json` contains results for simulations where one attack was injected using band 2 and the other using band 5.
+The result files are named according to the format: `{mode}_bands_{band1}_{band2}.json`, where `{band1}` and `{band2}` refer to the amplitude band of each individual attack, and `{mode}` specify if it includes detection or identification results. For example, `identification_bands_2_5.json` contains results for simulations where one attack was injected using band 2 and the other using band 5 and the results gathered are those of identification scenarios.
 
 ## `.json` File Structure
 
