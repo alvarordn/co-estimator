@@ -43,7 +43,7 @@ The `.json` file is structured as a nested dictionary with the following hierarc
     - `Recall`: Average recall across all simulations.
     - `Accuracy`: Average accuracy across all simulations.
 
-Note that the **F1-score** can be derived from precision and recall. For each combination of power factor, time instant, lambda value, and electrical magnitude, **1,000 simulations** have been conducted. Each simulation involves a random selection of measurements modified by the attack. In total, the results presented here are based on **1,350,000 simulation runs**.
+Note that the **F1-score** can be derived from precision and recall. For each combination of power factor, time instant, lambda value, and electrical magnitude, **250 simulations** have been conducted. Each simulation involves a random selection of measurements modified by the attack. In total, the results presented here are based on **337,500 simulation runs**.
 
 ## Naming Convention for Figures
 
