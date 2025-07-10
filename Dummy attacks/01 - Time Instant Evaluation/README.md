@@ -33,7 +33,7 @@ The figures in this folder follow a structured naming convention to clearly iden
 where:
 
 - **`<Mode>`**: Either `detection` or `identification`.
-- **`<Magnitude>`**: In the case of identification resultsm, it refers to the type of electrical magnitude that was attacked (`U` for voltage, `P` for active power, and `Q` for reactive power).
+- **`<Magnitude>`**: In the case of identification results, it refers to the type of electrical magnitude that was attacked (`U` for voltage, `P` for active power, and `Q` for reactive power).
 - **`<PowerFactor>`**: The power factor used during the simulation (`090neg`, `090pos`, or `100pos`).
 
 This naming system allows for easy categorization and retrieval of results based on the attack type and simulation parameters.
