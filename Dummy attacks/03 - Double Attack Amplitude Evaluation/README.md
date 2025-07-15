@@ -1,6 +1,6 @@
 # Double Attack Amplitude Evaluation
 
-This test case investigates the effects of launching **two simultaneous dummy false data injection attacks** targeting different measurements (e.g., real power *P*, reactive power *Q*, voltage *U*, or current *I*) at distinct locations in the system. Both attacks have the **same magnitude type** (e.g., both target *P*, or both target *Q*), but occur at different nodes. The amplitude of both attacks is varied systematically using predefined "bands" to assess how combined perturbations affect detectability and identification accuracy. This helps evaluate the robustness of bad data detection algorithms when facing coordinated, yet naive multi-point threats. The value of the hyper-parameter λ is modified across multiple scenarios to evaluate estimator performance under various conditions.
+This test case investigates the effects of launching **two simultaneous dummy false data injection attacks** targeting different measurements (e.g., real power *P*, reactive power *Q* or voltage *U*) at distinct locations in the system. Both attacks have the **same magnitude type** (e.g., both target *P*, or both target *Q*), but occur at different nodes. The amplitude of both attacks is varied systematically using predefined "bands" to assess how combined perturbations affect detectability and identification accuracy. This helps evaluate the robustness of bad data detection algorithms when facing coordinated, yet naive multi-point threats. The value of the hyper-parameter λ is modified across multiple scenarios to evaluate estimator performance under various conditions.
 
 ## Amplitude Band Description
 
@@ -19,7 +19,7 @@ Below is a table summarizing the mapping between band numbers and percentage dev
 | 6           | 110 – 115             | 101.0 – 101.5      |
 | 7           | 115 – 120             | 101.5 – 102.0      |
 
-The result files are named according to the format: `{mode}_bands_{band1}_{band2}.json`, where `{band1}` and `{band2}` refer to the amplitude band of each individual attack, and `{mode}` specify if it includes detection or identification results. For example, `identification_bands_2_5.json` contains results for simulations where one attack was injected using band 2 and the other using band 5 and the results gathered are those of identification scenarios.
+The result files are named according to the format: `{mode}_{band1}_{band2}.json`, where `{band1}` and `{band2}` refer to the amplitude band of each individual attack, and `{mode}` specifies if it includes detection or identification results. For example, `identification_2_5.json` contains results for simulations where one attack was injected using band 2 and the other using band 5 and the results gathered are those of identification scenarios.
 
 ## `.json` File Structure
 
