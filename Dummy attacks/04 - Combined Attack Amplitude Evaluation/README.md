@@ -1,6 +1,6 @@
 # Combined Attack Amplitude Evaluation
 
-This test case investigates the effects of launching **two simultaneous dummy false data injection attacks** targeting **different types of electrical magnitudes** (e.g., real power *P*, reactive power *Q* or voltage *U*) at the same or different nodes in the system. Each attack affects a distinct measurement type, allowing us to assess how mixed-signal manipulation impacts detection and identification performance. The amplitude of both attacks is varied systematically using predefined "bands" to evaluate how combined perturbations affect estimator robustness. This helps determine the sensitivity of bad data detection algorithms when facing naive but multi-dimensional cyber threats. The value of the hyper-parameter λ is modified across multiple scenarios to evaluate estimator performance under various conditions. The time instant is fixed at 10:00 AM, and the value of λ is set to 2.5, based on results from previous simulations.
+This test case investigates the effects of launching **two simultaneous dummy false data injection attacks** targeting **different types of electrical magnitudes** (e.g., real power *P*, reactive power *Q* or voltage *U*) at the same or different nodes in the system. Each attack affects a distinct measurement type, allowing us to assess how mixed-signal manipulation impacts detection and identification performance. The amplitude of both attacks is varied systematically using predefined "bands" to evaluate how combined perturbations affect estimator robustness. This helps determine the sensitivity of bad data detection algorithms when facing naive but multi-dimensional cyber threats. The time instant is fixed at 10:00 AM, and the value of λ is set to 2.5, based on results from previous simulations.
 
 ## Amplitude Band Description
 
@@ -19,7 +19,7 @@ Below is a table summarizing the mapping between band numbers and percentage dev
 | 6           | 110 – 115             | 101.0 – 101.5      |
 | 7           | 115 – 120             | 101.5 – 102.0      |
 
-The result files are named according to the format: `bands_{band1}_{band2}.json`, where `{band1}` and `{band2}` refer to the amplitude band of each individual attack. For example, `bands_2_5.json` contains results for simulations where one attack was injected using band 2 and the other using band 5.
+The result files are named according to the format: `{mode}_{band1}_{band2}.json`, where `{band1}` and `{band2}` refer to the amplitude band of each individual attack and `{mode}` stands for identification or detection results. For example, `detection_2_5.json` contains results for simulations where one attack was injected using band 2 and the other using band 5 and the results gathered are those evaluating the detection performance.
 
 ## `.json` File Structure
 
@@ -43,7 +43,7 @@ The `.json` file is structured as a nested dictionary with the following hierarc
     - `Recall`: Average recall across all simulations.
     - `Accuracy`: Average accuracy across all simulations.
 
-Note that the **F1-score** can be derived from precision and recall. For each combination of power factor, time instant, lambda value, and electrical magnitude, **1,000 simulations** have been conducted. Each simulation involves a random selection of measurements modified by the attack. In total, the results presented here are based on **1,350,000 simulation runs**.
+Note that the **F1-score** can be derived from precision and recall. For each combination of power factor, time instant and  pair of electrical magnitudes, **100 simulations** have been conducted. Each simulation involves a random selection of measurements modified by the attack. In total, the results presented here are based on **2,700 simulation runs**.
 
 ## Naming Convention for Figures
 
@@ -52,7 +52,7 @@ The figures in this folder follow a structured naming convention to clearly iden
 where:
 
 - **`<Mode>`**: Either `detection` or `identification`.
-- **`<Magnitude>`**: The type of electrical magnitude that was attacked (`U` for voltage, `P` for active power, and `Q` for reactive power).
+- **`<Magnitude>`**: The type of pair of electrical magnitudes attacked (`PQ`, `PU` and `QU`).
 - **`<PowerFactor>`**: The power factor used during the simulation (`090neg`, `090pos`, or `100pos`).
 
 This naming system allows for easy categorization and retrieval of results based on the attack type and simulation parameters.
