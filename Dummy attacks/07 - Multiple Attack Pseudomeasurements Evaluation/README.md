@@ -3,9 +3,9 @@
 This test case evaluates the impact of **including pseudomeasurements** in the state estimation process under **multiple simultaneous false data injection attacks**, particularly in **Medium Voltage (MV) feeders**. The focus is on how different data configurations affect detection and identification performance when **multiple measurements are attacked simultaneously**.
 
 Three scenarios are considered:
-1. **With measurements**: Real measurements are available and used in the MV feeders (`with_MV`).
-2. **Without measurements**: No measurements are assumed to be present in the MV feeders (`wo_MV`)
-3. **With pseudomeasurements**: Active power pseudomeasurements are generated for the MV feeders based on aggregated information from downstream nodes (bottom-up) and upstream nodes (top-down) (`with_PSM`)
+1. **With measurements**: Real measurements are available and used in the MV feeders (`withMV`).
+2. **Without measurements**: No measurements are assumed to be present in the MV feeders (`woMV`)
+3. **With pseudomeasurements**: Active power pseudomeasurements are generated for the MV feeders based on aggregated information from downstream nodes (bottom-up) and upstream nodes (top-down) (`withPSM`)
 
 In each scenario, a variable number of measurements — ranging from **2 to 10** — are randomly selected and attacked in each simulation. This allows to assess how the system responds to increasing attack complexity across different measurement availability conditions.
 
@@ -28,7 +28,7 @@ Below is a table summarizing the mapping between band numbers and percentage dev
 | 6           | 110 – 115             | 101.0 – 101.5      |
 | 7           | 115 – 120             | 101.5 – 102.0      |
 
-The result files are named according to the format: `{scenario}_{band}.json`, where `{scenario}` refers to the availability of MV feeder measurements and `{band}` refers to the amplitude band used for the attacks. For example, `with_MV_3.json` contains results for simulations over a set of measurements that includes MV ones and where all attacks were injected using band 3.
+The result files are named according to the format: `{mode}_{scenario}_{band}.json`, where `{mode}` refers to identification or detection results, {scenario} refers to the availability of measurements in the MV feeders and `{band}` refers to the amplitude band used for the single attack. For example, `identification_withMV_5.json` contains results for simulations where the attack was injected using band 5 and considering measurements in the MV feeders.
 
 ## `.json` File Structure
 
@@ -51,7 +51,7 @@ The `.json` file is structured as a nested dictionary with the following hierarc
     - `normInf`: Maximum difference between real state and tool state estimation.
     - `z`: Root mean square difference between unmodified measurements and tool estimates.
 
-For each combination of power factor, time instant and number of attacked measurements, **1,000 simulations** have been conducted. In total, the results presented here are based on **81,000**, depending on the number of configurations tested.
+For each combination of power factor, time instant, scenario and number of attacked measurements, **100 simulations** have been conducted. In total, the results presented here are based on **24,300**, depending on the number of configurations tested.
 
 ## Naming Convention for Figures
 
@@ -62,6 +62,7 @@ where:
 
 - **`<Mode>`**: Either `detection` or `identification`.
 - **`<PowerFactor>`**: The power factor used during the simulation (`090neg`, `090pos`, or `100pos`).
-- **`<Magnitude>`**: The type of electrical magnitude that was attacked (`U` for voltage, `P` for active power, `I` for current and `Q` for reactive power).
+- **`<TimeInstant>`**: For identification results, it indicates the time instat of the simulation.
+- **`<Band>`**: For identification results, it indicates the band that defines the amplitude of the attack.
 
 This naming system allows for easy categorization and retrieval of results based on the attack type, simulation parameters, and data availability scenario.
