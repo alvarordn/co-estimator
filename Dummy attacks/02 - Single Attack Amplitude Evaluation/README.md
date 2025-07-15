@@ -19,11 +19,10 @@ Below is a table summarizing the mapping between band numbers and percentage dev
 | 6           | 110 – 115             | 101.0 – 101.5      |
 | 7           | 115 – 120             | 101.5 – 102.0      |
 
-The result files are named according to the format: `bands_{band}.json`.
 
 ## `.json` File Structure
 
-The result files have a `.json` extension and are divided into two types: **detection** and **identification**. Detection files are prefixed with the word `detection` and indicate, out of the total number of simulations performed, in which of them a cyberattack was detected, without specifying the exact measurement or set of measurements attacked. Identification files are prefixed with `identification` and include various performance metrics that evaluate the accuracy of attack identification. These metrics are described in detail below. After the type, the name of the file includes the band in which the cyberattacks have occurred.
+The result files have a `.json` extension and are divided into two types: **detection** and **identification**. Detection files are prefixed with the word `detection` and indicate, out of the total number of simulations performed, in which of them a cyberattack was detected, without specifying the exact measurement or set of measurements attacked. Identification files are prefixed with `identification` and include various performance metrics that evaluate the accuracy of attack identification. These metrics are described in detail below. After the type, the name of the file includes the band in which the cyberattacks have occurred. At the end of the file name appears a number that indicates the band number used for the simulations.
 
 The `.json` file is structured as a nested dictionary with the following hierarchy:
 
@@ -33,7 +32,7 @@ The `.json` file is structured as a nested dictionary with the following hierarc
 - **Fourth-level key**: Electrical magnitude attacked (`P`, `Q`, or `U`)
 - **Fifth-level**: A dictionary containing:
   - **Detection records** (for detection files):
-    - `Detection`: List indicating for each ismulation if the attack has been detected (`true`) or not (`false`).
+    - `Detection`: List indicating for each simulation if the attack has been detected (`true`) or not (`false`).
   - **Identification metrics** (for identification files):
     - `0`: Scenarios in which the attack has been correctly detected.
     - `1`: Scenarios in which the attack has been detected but at least one healthy measurement was incorrectly flagged.
@@ -48,11 +47,11 @@ Note that the **F1-score** can be derived from precision and recall. For each co
 ## Naming Convention for Figures
 
 The figures in this folder follow a structured naming convention to clearly identify the content of each plot. The filename format is:\
-`<Mode>` _ `<Magnitude>` _ `<PowerFactor>`.pdf\
+`<Mode>` _ `<Magnitude/Band>` _ `<PowerFactor>`.pdf\
 where:
 
 - **`<Mode>`**: Either `detection` or `identification`.
-- **`<Magnitude>`**: The type of electrical magnitude that was attacked (`U` for voltage, `P` for active power, and `Q` for reactive power).
+- **`<Magnitude/Band>`**: In the case of identification results, it refers to the type of electrical magnitude that was attacked (`U` for voltage, `P` for active power, and `Q` for reactive power). In the case of detection results, it indicates the band used for the simulations.
 - **`<PowerFactor>`**: The power factor used during the simulation (`090neg`, `090pos`, or `100pos`).
 
 This naming system allows for easy categorization and retrieval of results based on the attack type and simulation parameters.
